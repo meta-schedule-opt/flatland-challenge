@@ -2,10 +2,10 @@
 env:
   # Random seed used to generate rails
   # (14 medium - 14 big)
-  seed: 1
+  seed: 14
   # Number of trains to spawn
   # (3, 5, 7 medium - 5, 7, 10 big)
-  num_trains: 7
+  num_trains: 5
   # Environment width
   # (48 medium - 64 big)
   width: 48
@@ -19,7 +19,7 @@ env:
   grid: False
   # Maximum number of tracks allowed between cities
   # (2 medium - 5 big)
-  max_rails_between_cities: 2
+  max_rails_between_cities: 3
   # Maximum number of parallel tracks within a city
   # (3 medium - 5 big)
   max_rails_in_cities: 3
@@ -31,7 +31,7 @@ env:
     enabled: False
     # Malfunction rate
     # (0.0125 medium - 0.0125 big)
-    rate: !!float 0.005
+    rate: !!float 0.0125
     # Malfunction minimum duration
     min_duration: 15
     # Malfunction maximum duration
@@ -233,7 +233,7 @@ model:
 # Replay buffer config
 replay_buffer:
   # Maximum buffer dimension
-  size: 100000
+  size: 100
   # Batch size
   batch_size: 128
   # Try to learn after this many steps
@@ -241,7 +241,7 @@ replay_buffer:
   # Replay buffer to restore
   load: ""
   # Save replay buffer at each checkpoint
-  save: False
+  save: False #False
 
 # Generic config
 generic:
@@ -250,9 +250,9 @@ generic:
   # Fix all the possible sources of randomness
   fix_random: True
   # Random seed used when `fix_random` is True
-  random_seed: 1
+  random_seed: 10 #1
   # Device config
-  use_gpu: False
+  use_gpu: True
   # Enable wandb logging
   enable_wandb: True
   # Checkpoint to save model to wandb
@@ -260,21 +260,20 @@ generic:
   # Gradients logging in wandb
   wandb_gradients:
     # Enable or disable logging
-    enabled: False
+    enabled: True
     # How often to log gradients
     checkpoint: 200
 
 # Training config
 training:
   # Checkpoint interval (how often to evaluate and save the model)
-  checkpoint: 500
-
+  checkpoint: 50
   # Train environment config
   train_env:
     # Path to the train environment file
     load: ""
     # Number of training episodes to run
-    episodes: 7500
+    episodes: 20000
     # Train on random enviroments or on the same one
     all_random: True
 
@@ -283,8 +282,7 @@ training:
     # Path to the evaluation environment file
     load: ""
     # Number of evaluation episodes
-    episodes: 20
-    # Evaluate on random enviroments or on the same one
+    episodes: 5
     all_random: True
 
   # Renderer config
@@ -292,7 +290,7 @@ training:
     # Render episodes during training
     training: False
     # How often to render an episode in training
-    train_checkpoint: 1
+    train_checkpoint: 50
     # Render episodes during evaluation
     evaluation: False
     # How often to render an episode in evaluation
@@ -302,7 +300,7 @@ training:
 
 testing:
   # Number of episodes to run
-  episodes: 500
+  episodes: 100
   # Path to the environment file
   load: ""
   # Path to the model to load

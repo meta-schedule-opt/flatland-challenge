@@ -139,7 +139,7 @@ threadpoolctl==2.1.0
 timeout-decorator==0.4.1
 tinycss2==1.0.2
 toml==0.10.1
-torch==1.6.0+cpu
+torch==1.6.0
 tornado==6.0.4
 tox==3.20.1
 tqdm==4.51.0

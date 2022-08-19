@@ -1,6 +1,5 @@
 import os
 from datetime import datetime
-
 import yaml
 import wandb
 import numpy as np
@@ -590,7 +589,7 @@ def main():
     if args["generic"]["enable_wandb"]:
         wandb.init(
             project='flatland-challenge',
-            entity="wadaboa",
+            entity="dmeta",
             config=args
         )
         wandb.tensorboard.patch(tensorboardX=False, pytorch=True)
